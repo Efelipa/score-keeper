@@ -1,0 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap');
+:root {
+    --mainColor: #14213d;
+    --mainFont: 'Noto Sans', sans-serif;
+}
+/* Global */
+body {
+    font-family: var(--mainFont);
+}
+/* ID style*/
+#mainNav {
+    background-color: var(--mainColor);
+}
+#mainNav .container a{
+    color: white;
+}
+/* Class */
+.card .card-body .card-title {
+    font-weight: bold;
+}
