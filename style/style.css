@@ -7,6 +7,10 @@
 body {
     font-family: var(--mainFont);
 }
+select[name='number'] {
+    border-radius: 1    0px;
+    padding: 2px;
+}
 /* ID style*/
 #mainNav {
     background-color: var(--mainColor);
@@ -18,3 +22,4 @@ body {
 .card .card-body .card-title {
     font-weight: bold;
 }
+
