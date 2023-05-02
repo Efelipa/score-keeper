@@ -8,7 +8,7 @@ body {
     font-family: var(--mainFont);
 }
 select[name='number'] {
-    border-radius: 1    0px;
+    border-radius: 10px;
     padding: 2px;
 }
 /* ID style*/

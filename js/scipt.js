@@ -1,57 +1,55 @@
-const playerOneButton = document.getElementById('toPlayer1');
-const pointCounter1 = document.getElementById('p1');
-const playerTwoButton = document.getElementById('toPlayer2');
-const pointCounter2 = document.getElementById('p2');
+const player1 = {
+    score: 0,
+    button: document.getElementById('toPlayer1'),
+    pointCounter: document.getElementById('p1'),
+}
+const player2 = {
+    score: 0,
+    button: document.getElementById('toPlayer2'),
+    pointCounter: document.getElementById('p2'),
+}
 const resetButton = document.getElementById('rsButton');
 const toPlay = document.getElementById('playTo');
-
-let scoreOne = 0;
-let scoreTwo = 0;
 let winnigScore = 0;
 let isGameOver = false;
 
-const addCounterElement = () => {
+const updateGameScore = (rival, opponent) => {
     if(!isGameOver) {
-        scoreOne++;
-        if(scoreOne === winnigScore) {
-            isGameOver = true;
-            pointCounter1.classList.add('text-success');
-            pointCounter2.classList.add('text-danger');
-            playerOneButton.disabled = true;
-            playerTwoButton.disabled = true;
-            toPlay.disabled = true;
+        rival.score++;
+        if(rival.score === winnigScore) {
+            gameOver(rival, opponent);
         } 
-        pointCounter1.textContent = scoreOne;
+        rival.pointCounter.textContent = rival.score;
     }
 }
-const addCounterElement2 = () => {
-    if(!isGameOver) {
-        scoreTwo++;
-        if(scoreTwo === winnigScore) {
-            isGameOver = true;
-            pointCounter2.classList.add('text-success');
-            pointCounter1.classList.add('text-danger');
-            playerOneButton.disabled = true;
-            playerTwoButton.disabled = true;
-            toPlay.disabled = true;
-        } 
-        pointCounter2.textContent = scoreTwo;
+const gameOver = (rival, opponent) => {
+    isGameOver = true;
+    rival.pointCounter.classList.add('text-success');
+    opponent.pointCounter.classList.add('text-danger');
+    rival.button.disabled = true;
+    opponent.button.disabled = true;
+    toPlay.disabled = true;
+}
+const addCounterElement = () => {
+        updateGameScore(player1, player2);
     }
+const addCounterElement2 = () => {
+    updateGameScore(player2, player1)
 }
 const reset = () => {
     isGameOver = false;
-    scoreOne = 0;
-    scoreTwo = 0;
-    pointCounter1.textContent = 0;
-    pointCounter2.textContent = 0;
-    pointCounter1.classList.remove('text-success', 'text-danger');
-    pointCounter2.classList.remove('text-success', 'text-danger');
-    playerOneButton.disabled = false;
-    playerTwoButton.disabled = false;
+    player1.score = 0;
+    player2.score = 0;
+    player1.pointCounter.textContent = 0;
+    player2.pointCounter.textContent = 0;
+    player1.pointCounter.classList.remove('text-success', 'text-danger');
+    player2.pointCounter.classList.remove('text-success', 'text-danger');
+    player1.button.disabled = false;
+    player2.button.disabled = false;
     toPlay.disabled = false;
 }
-playerOneButton.addEventListener('click',addCounterElement);
-playerTwoButton.addEventListener('click',addCounterElement2)
+player1.button.addEventListener('click',addCounterElement);
+player2.button.addEventListener('click',addCounterElement2);
 toPlay.addEventListener('change', function() {
     winnigScore = parseInt(this.value);
     reset();
